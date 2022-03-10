@@ -53,6 +53,15 @@ namespace _2022_01_28_Opening_weekend
 
             Console.WriteLine($"4. feladat: Az UIP Duna Film forgalmazó első heti bevételeinek összege: {uipKereset.ToString("C2")}");
 
+            Film legtobbLatogatosFilm = filmek.OrderBy(f => f.latogatok).Last();
+            
+            Console.WriteLine("5. feladat: Legtöbb látogató az első héten:");
+            Console.WriteLine($"Eredeti cím: {legtobbLatogatosFilm.eredetiCim}");
+            Console.WriteLine($"Magyar cím: {legtobbLatogatosFilm.magyarCim}");
+            Console.WriteLine($"Forgalmazó: {legtobbLatogatosFilm.forgalmazo}");
+            Console.WriteLine($"Bevétel az első héten: {legtobbLatogatosFilm.bevetel.ToString("C2")}");
+            Console.WriteLine($"Látogatók száma: {legtobbLatogatosFilm.latogatok} fő");
+
             Console.ReadKey();
         }
     }
