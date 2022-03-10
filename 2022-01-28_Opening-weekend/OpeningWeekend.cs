@@ -51,7 +51,7 @@ namespace _2022_01_28_Opening_weekend
                 }
             }
 
-            Console.WriteLine($"4. feladat: Az UIP Duna Film forgalmazó első heti bevételeinek összege: {uipKereset}");
+            Console.WriteLine($"4. feladat: Az UIP Duna Film forgalmazó első heti bevételeinek összege: {uipKereset.ToString("C2")}");
 
             Console.ReadKey();
         }
