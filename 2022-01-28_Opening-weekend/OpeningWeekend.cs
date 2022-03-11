@@ -11,7 +11,7 @@ namespace _2022_01_28_Opening_weekend
     {
         public string eredetiCim { get; set; }
         public string magyarCim { get; set; }
-        public string bemutato { get; set; }
+        public DateTime bemutato { get; set; }
         public string forgalmazo { get; set; }
         public int bevetel { get; set; }
         public int latogatok { get; set; }
@@ -21,7 +21,7 @@ namespace _2022_01_28_Opening_weekend
             string[] t = sor.Split(';');
             eredetiCim = t[0];
             magyarCim = t[1];
-            bemutato = t[2];
+            bemutato = DateTime.Parse(t[2]);
             forgalmazo = t[3];
             bevetel = int.Parse(t[4]);
             latogatok = int.Parse(t[4]);
@@ -81,6 +81,32 @@ namespace _2022_01_28_Opening_weekend
             {
                 Console.WriteLine("6. feladat: Nem volt ilyen film!");
             }
+
+            Dictionary<string, int> forgalmazoFilmek = new Dictionary<string, int>();
+
+            foreach (var f in filmek)
+            {
+
+                if (!forgalmazoFilmek.ContainsKey(f.forgalmazo))
+                {
+                    forgalmazoFilmek.Add(f.forgalmazo, 1);
+                }
+                else
+                {
+                    forgalmazoFilmek[f.forgalmazo]++;
+                }
+            }
+
+            List<string> statCsv = new List<string>();
+            statCsv.Add("forgalmazo;filmekSzama");
+            foreach (var f in forgalmazoFilmek)
+            {
+                if (f.Value > 1)
+                {
+                    statCsv.Add($"{f.Key};{f.Value}");
+                }
+            }
+            File.WriteAllLines("stat.csv", statCsv);
 
             Console.ReadKey();
         }
